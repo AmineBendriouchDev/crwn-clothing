@@ -1,36 +1,49 @@
 import React from 'react';
 
+// Redux
 import { connect } from 'react-redux';
 
+// Component Actions
 import { addItem } from '../../redux/cart/cart.actions';
 
-import Btn from '../btn/btn.component';
+// Component Styles
+import {
+  CollectionItemContainer,
+  CollectionItemImage,
+  CollectionItemBtn,
+  CollectionItemFooter,
+  CollectionItemName,
+  CollectionItemPrice,
+} from './collection-item.styles';
 
-import './collection-item.styles.scss';
-
+// Component JSX
 const CollectionItem = ({ item, addItem }) => {
+  // Destruct item Values
   const { imageURL, name, price } = item;
 
   return (
-    <div className='collection-item'>
-      <div
+    <CollectionItemContainer>
+      <CollectionItemImage
         className='image'
         style={{
           backgroundImage: `url('${imageURL}')`,
         }}
-      ></div>
+      />
 
-      <div className='collection-footer'>
-        <span className='name'>{name}</span>
-        <span className='price'>{price}</span>
-      </div>
-      <Btn onClick={() => addItem(item)} inverted>
+      <CollectionItemFooter>
+        <CollectionItemName>{name}</CollectionItemName>
+
+        <CollectionItemPrice>${price}</CollectionItemPrice>
+      </CollectionItemFooter>
+
+      <CollectionItemBtn className='btn' onClick={() => addItem(item)} inverted>
         Add to cart
-      </Btn>
-    </div>
+      </CollectionItemBtn>
+    </CollectionItemContainer>
   );
 };
 
+// Set State Values
 const mapDispatchTopProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
 });

@@ -1,12 +1,16 @@
 import React from 'react';
 
+// Firebase
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+
+// Component Styles
+import { SignInContainer, SignInTitle, SignInBtns } from './sign-in.styles';
+
+// Import Components
 import FormInput from '../form-input/form-input.component';
 import Btn from '../btn/btn.component';
 
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
-
-import './sign-in.styles.scss';
-
+// Component JSX
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -38,8 +42,8 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className='sign-in'>
-        <h2 className='title'>I already have an account</h2>
+      <SignInContainer>
+        <SignInTitle>I already have an account</SignInTitle>
         <span>Sign In with your email and password</span>
 
         <form onSubmit={this.handleSubmit}>
@@ -61,14 +65,15 @@ class SignIn extends React.Component {
             label='Password'
           />
 
-          <div className='buttons'>
+          <SignInBtns>
             <Btn type='submit'>Sign In</Btn>
+
             <Btn onClick={signInWithGoogle} type='button' isGoogleSignIn>
               Sign In with Google
             </Btn>
-          </div>
+          </SignInBtns>
         </form>
-      </div>
+      </SignInContainer>
     );
   }
 }

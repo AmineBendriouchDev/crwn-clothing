@@ -1,41 +1,62 @@
 import React from 'react';
 
+// Redux
 import { connect } from 'react-redux';
 
+// Component Actions
 import {
   clearItemFromCart,
   addItem,
   removeItem,
 } from '../../redux/cart/cart.actions';
 
-import './checkout-item.styles.scss';
+// Component Styles
+import {
+  CheckoutItemContainer,
+  CheckoutItemImgContainer,
+  CheckoutItemName,
+  CheckoutItemQuantity,
+  CheckoutItemArrow,
+  CheckoutItemQuantityValue,
+  CheckoutItemRemoveBtn,
+  CheckoutItemPrice,
+} from './checkout-item.styles';
 
+// Component JSX
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+  // Destruct cartItem Values
   const { name, imageURL, price, quantity } = cartItem;
 
   return (
-    <div className='checkout-item'>
-      <div className='image-container'>
-        <img src={imageURL} alt='' />
-      </div>
-      <span className='name'>{name}</span>
-      <span className='quantity'>
-        <div className='arrow' onClick={() => removeItem(cartItem)}>
+    <CheckoutItemContainer>
+      <CheckoutItemImgContainer>
+        <img src={imageURL} alt={name} />
+      </CheckoutItemImgContainer>
+
+      <CheckoutItemName>{name}</CheckoutItemName>
+
+      <CheckoutItemQuantity>
+        <CheckoutItemArrow onClick={() => removeItem(cartItem)}>
           &#10094;
-        </div>
-        <span className='value'>{quantity}</span>
-        <div className='arrow' onClick={() => addItem(cartItem)}>
+        </CheckoutItemArrow>
+
+        <CheckoutItemQuantityValue>{quantity}</CheckoutItemQuantityValue>
+
+        <CheckoutItemArrow onClick={() => addItem(cartItem)}>
           &#10095;
-        </div>
-      </span>
-      <span className='price'>{price}</span>
-      <div className='remove-button' onClick={() => clearItem(cartItem)}>
+        </CheckoutItemArrow>
+      </CheckoutItemQuantity>
+
+      <CheckoutItemPrice>${price}</CheckoutItemPrice>
+
+      <CheckoutItemRemoveBtn onClick={() => clearItem(cartItem)}>
         &#10005;
-      </div>
-    </div>
+      </CheckoutItemRemoveBtn>
+    </CheckoutItemContainer>
   );
 };
 
+// Set State Values
 const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItemFromCart(item)),
   addItem: (item) => dispatch(addItem(item)),

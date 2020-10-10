@@ -1,15 +1,11 @@
 import React from 'react';
 
-import './btn.styles.scss';
+// Component Styles
+import { BtnContainer } from './btn.styles';
 
-const Btn = ({ children, isGoogleSignIn, inverted, ...otherProps }) => (
-  <button
-    className={` ${inverted ? 'btn--inverted' : ''} 
-    ${isGoogleSignIn ? 'btn--google' : ''} btn`}
-    {...otherProps}
-  >
-    {children}
-  </button>
+// Component JSX
+const Btn = ({ children, ...props }) => (
+  <BtnContainer {...props}>{children}</BtnContainer>
 );
 
 export default Btn;

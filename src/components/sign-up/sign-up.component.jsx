@@ -1,12 +1,16 @@
 import React from 'react';
 
+// Firebase
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+
+// Component Styles
+import { SignUpContainer, SignUpTitle } from './sign-up.styles';
+
+// Import Components
 import FormInput from '../form-input/form-input.component';
 import Btn from '../btn/btn.component';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-
-import './sign-up.styles.scss';
-
+// Component JSX
 class SignUp extends React.Component {
   constructor() {
     super();
@@ -58,8 +62,8 @@ class SignUp extends React.Component {
     const { displayName, email, password, confirmPassword } = this.state;
 
     return (
-      <div className='sign-up'>
-        <h2 className='title'>I do not have an account</h2>
+      <SignUpContainer>
+        <SignUpTitle>I do not have an account</SignUpTitle>
 
         <span>Sign up with your email and password</span>
 
@@ -102,7 +106,7 @@ class SignUp extends React.Component {
 
           <Btn type='submit'>Sign Up</Btn>
         </form>
-      </div>
+      </SignUpContainer>
     );
   }
 }
